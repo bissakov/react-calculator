@@ -1,26 +1,22 @@
 interface ButtonProps {
   value: string;
-  classNames?: string | null;
-  isNumber: boolean;
   onButtonClick: (value: string) => void;
 }
 
-function Button({ value, classNames, isNumber, onButtonClick }: ButtonProps) {
+const Button = ({ value, onButtonClick }: ButtonProps) => {
   return (
-    <div
-      onClick={() => {
-        if (isNumber) onButtonClick(value);
-      }}
-      className={`text-cyan-50 font-bold antialiased
-                  ${isNumber ? 'bg-cyan-600' : 'bg-cyan-700'}  
-                  rounded-md p-8 text-4xl flex items-center justify-center cursor-pointer
-                  transition ease-in-out delay-50 hover:bg-cyan-800 duration-200
-                  transition ease-in-out delay-50 active:bg-cyan-200 duration-200
-                  ${classNames}`}
+    <button
+      className={`outline outline-2 outline-cyan-950 rounded-md py-2 p-8 flex items-center justify-center cursor-pointer
+                  transition ease-in-out delay-50 hover:bg-cyan-500 active:bg-cyan-100 duration-200 ${
+                    !isNaN(parseFloat(value)) || ['.', '±'].includes(value)
+                      ? 'bg-cyan-600'
+                      : 'bg-cyan-700'
+                  } ${value === '=' ? 'col-span-3' : ''} `}
+      onClick={() => onButtonClick(value)}
     >
       {value}
-    </div>
+    </button>
   );
-}
+};
 
 export default Button;

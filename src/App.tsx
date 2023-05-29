@@ -1,21 +1,4 @@
-import DisplayArea from './components/DisplayArea';
-import ButtonsArea from './components/ButtonsArea';
-import { useState } from 'react';
-
-function Calculator() {
-  const [currentButton, setCurrentButton] = useState('');
-
-  return (
-    <div className="w-1/4 h-4/5 flex flex-col justify-center">
-      <DisplayArea value={currentButton} />
-      <ButtonsArea
-        onButtonClick={(value: string) => {
-          setCurrentButton(value);
-        }}
-      />
-    </div>
-  );
-}
+import Calculator from './components/Calculator';
 
 function App() {
   return (
